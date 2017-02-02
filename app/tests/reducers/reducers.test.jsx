@@ -59,8 +59,24 @@ describe('Reducers', () => {
       expect(res[0].completed).toEqual(false);
       expect(res[0].completedAt).toEqual(undefined);
     })
-    // define todos array
-    // generate action
-    // call reducer and assert completed flipped
+    
+    it('should add existing todos', () => {
+      var todos = [{
+        id: 111,
+        text: 'walk the dog',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 700
+      }];
+
+      var action = {
+        type: 'ADD_TODOS',
+        todos
+      };
+
+      var res = reducers.todosReducer(df([]), df(action));
+
+      expect(res.length).toEqual(1);
+    });
   })
 });
